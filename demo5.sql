@@ -114,9 +114,9 @@ SELECT max(salary), min(salary), sum(salary), avg(salary)
 from EMPLOYEES;
 
 --3업무별로 사원들의 최고 급여액, 최저급여액, 급여 총액, 평균 급여액 조회하기
-select DEPARTMENT_ID, max(salary), min(salary), sum(salary), avg(salary)
+select job_ID, max(salary), min(salary), sum(salary), avg(salary)
 from EMPLOYEES
-GROUP BY department_id;
+GROUP BY job_id;
 
 --4동일한 업무에 종사하는 사원들의 수를 업무별로 표시하기
 SELECT job_id,count(*)
