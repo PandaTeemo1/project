@@ -1,0 +1,59 @@
+select B.EMPLOYEE_ID, B.FIRST_NAME, B.SALARY, A.GRA
+from JOB_GRADES A, EMPLOYEES B
+WHERE B.SALARY >= A.LOWEST_SAL 
+and B.SALARY<=A.HIGHEST_SAL
+order by B.Employee_ID;
+
+SELECT A.FIRST_NAME, A.DEPARTMENT_ID, B.DEPARTMENT_NAME
+FROM EMPLOYEES A, DEPARTMENTS B
+WHERE A.DEPARTMENT_ID = B.DEPARTMENT_ID(+);
+
+--1 모든 사원의 이름, 부서아이디, 부서이름을 표시하기
+select A.FIRST_NAME, A.DEPARTMENT_ID , B.department_name
+from EMPLOYEES A, DEPARTMENTS B
+where B.DEPARTMENT_ID(+) = A.DEPARTMENT_ID;
+
+--2 커미션을 받는 모든 사원의 이름, 부서이름, 위치 아이디 및 도서명을 표시하기
+SELECT A.FIRST_NAME, B.DEPARTMENT_NAME, C.LOCATION_ID, C.CITY
+from EMPLOYEES A, DEPARTMENTS B, LOCATIONS C
+WHERE A.COMMISSION_PCT is not NULL
+AND A.DEPARTMENT_ID = B.DEPARTMENT_ID(+)
+and B.LOCATION_ID = C.LOCATION_ID(+)
+ORDER by A.FIRST_NAME;
+
+--3 이름에 a가 포함된 모든 사원의 이름과 부서이름 표시하기
+SELECT A.FIRST_NAME, B.DEPARTMENT_NAME
+from EMPLOYEES A, DEPARTMENTS B
+where A.FIRST_NAME Like '%a%'
+-- instr(A.FIRST_NAME, 'a')<>0
+AND A.DEPARTMENT_ID = B.DEPARTMENT_ID
+order by A.FIRST_NAME;
+
+--4 Toronto에 근무하는 모든 사원의 이름, 업무, 부서번호 및 부서이름을 표시하기
+SELECT B.FIRST_NAME, B.JOB_ID, C.DEPARTMENT_ID, C.DEPARTMENT_NAME
+FROM EMPLOYEES B, DEPARTMENTS C, LOCATIONS A
+where A.CITY = 'Toronto'
+and A.LOCATION_ID = C.LOCATION_ID
+and B.DEPARTMENT_ID = C.DEPARTMENT_ID
+order by B.FIRST_NAME;
+
+--5 사원의 이름과 사원아이디와 그 사원을 관리하느 상사의 사원아이디와 사원 이름을 표시하기
+SELECT A.EMPLOYEE_ID as emp_id, A.FIRST_NAME as emp_name, B.EMPLOYEE_ID as manager_id, B.FIRST_NAME as manager_name
+from EMPLOYEES A, EMPLOYEES B
+where A.MANAGER_ID = B.EMPLOYEE_ID
+order by A.EMPLOYEE_ID;
+
+--6 모든 사원의 이름, 업무, 부서이름, 급여, 급여등급을 표시하기
+SELECT A.FIRST_NAME, A.JOB_ID, C.DEPARTMENT_NAME, A.SALARY, B.GRA
+FROM EMPLOYEES A, JOB_GRADES B, DEPARTMENTS C
+WHERE A.DEPARTMENT_ID = C.DEPARTMENT_ID(+)
+and A.SALARY >= B.LOWEST_SAL 
+AND A.SALARY <= B.HIGHEST_SAL
+order by A.FIRST_NAME;
+
+--7 본인의 상사보다 먼저 입사한 사원의 이름, 입사일, 관리자의 이름 및 입사일을 표시하기
+SELECT A.FIRST_NAME as 사원, to_char(A.HIRE_DATE, 'yyyy-mm-dd')as 입사일, B.FIRST_NAME as 관리자, to_char(B.HIRE_DATE, 'yyyy-mm-dd')as 입사일
+FROM EMPLOYEES A, EMPLOYEES B
+where A.MANAGER_ID = B.EMPLOYEE_ID
+and A.HIRE_DATE < B.HIRE_DATE
+order by A.FIRST_NAME;
