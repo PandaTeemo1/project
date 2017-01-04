@@ -8,8 +8,8 @@ import util.ConnectionUtil;
 
 public class BookDAO {
 	public void insertBook(BookVO book) throws SQLException{
-		String sql = "insert into tb_book(no, title, author, publisher, price, pubdate"
-					+" values(book_seq.nextval, ?, ?, ?, ?, sysdate";
+		String sql = "insert into tb_book(no, title, author, publisher, price, pubdate)"
+					+" values(book_seq.nextval, ?, ?, ?, ?, sysdate)";
 		
 		Connection con = ConnectionUtil.getConnection();
 		PreparedStatement pstmt = con.prepareStatement(sql);
@@ -17,6 +17,7 @@ public class BookDAO {
 		pstmt.setString(2, book.getAuthor());
 		pstmt.setString(3, book.getPublisher());
 		pstmt.setInt(4, book.getPrice());
+		
 		
 		pstmt.executeUpdate();
 		

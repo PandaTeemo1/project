@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/8.0.102" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Client.TransControllor">
+   <children>
+      <Pane layoutY="82.0" prefHeight="318.0" prefWidth="400.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+         <children>
+            <TableView fx:id="AccTable" prefHeight="318.0" prefWidth="400.0">
+              <columns>
+                <TableColumn fx:id="AccCol" prefWidth="75.0" text="입출금" />
+                <TableColumn fx:id="dateCol" prefWidth="75.0" text="날짜" />
+                  <TableColumn fx:id="nameCol" prefWidth="75.0" text="보낸곳" />
+                  <TableColumn fx:id="priceCol" prefWidth="75.0" text="가격" />
+                  <TableColumn fx:id="balanceCol" prefWidth="75.0" text="잔액" />
+              </columns>
+               <columnResizePolicy>
+                  <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+               </columnResizePolicy>
+            </TableView>
+         </children>
+      </Pane>
+      <Label fx:id="mainLabel" layoutX="160.0" layoutY="14.0" text="계좌정보">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+      <Label fx:id="nameLabel" layoutX="9.0" layoutY="53.0" text="이름" />
+      <Label fx:id="accLabel" layoutX="102.0" layoutY="53.0" text="계좌번호" />
+      <Label fx:id="balLabel" layoutX="224.0" layoutY="53.0" text="잔액" />
+      <TextField fx:id="balTextField" layoutX="255.0" layoutY="49.0" />
+      <TextField fx:id="nameTextField" layoutX="38.0" layoutY="49.0" prefHeight="23.0" prefWidth="59.0" />
+      <TextField fx:id="accTextField" layoutX="155.0" layoutY="49.0" prefHeight="23.0" prefWidth="66.0" />
+   </children>
+</AnchorPane>
